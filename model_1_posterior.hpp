@@ -13,12 +13,12 @@ static constexpr std::array<const char*, 18> locations_array__ =
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 8, column 2 to column 13)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 9, column 2 to column 13)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 21, column 2 to column 15)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 23, column 4 to column 56)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 23, column 4 to column 52)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 22, column 17 to line 24, column 3)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 22, column 2 to line 24, column 3)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 13, column 2 to column 34)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 14, column 2 to column 24)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 16, column 4 to column 48)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 13, column 2 to column 29)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 14, column 2 to column 32)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 16, column 4 to column 44)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 15, column 17 to line 17, column 3)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 15, column 2 to line 17, column 3)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 3, column 2 to column 8)",
@@ -143,15 +143,15 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
       alpha = in__.template read<local_scalar_t__>();
       {
         current_statement__ = 7;
-        lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(theta, 0.0002, 0.00001));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(theta, 0.85, 0.20));
         current_statement__ = 8;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 2, 0.1));
+        lp_accum__.add(
+          stan::math::normal_lpdf<propto__>(alpha, 100000, 15000));
         current_statement__ = 11;
         for (int n = 1; n <= N; ++n) {
           current_statement__ = 9;
           lp_accum__.add(
-            stan::math::poisson_log_lpmf<propto__>(
+            stan::math::poisson_lpmf<propto__>(
               stan::model::rvalue(y, "y", stan::model::index_uni(n)),
               (alpha +
                 (stan::model::rvalue(income, "income",
@@ -212,7 +212,7 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
       for (int n = 1; n <= N; ++n) {
         current_statement__ = 4;
         stan::model::assign(y_sim,
-          stan::math::poisson_log_rng(
+          stan::math::poisson_rng(
             (alpha +
               (stan::model::rvalue(income, "income",
                  stan::model::index_uni(n)) * theta)), base_rng__),

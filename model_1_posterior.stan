@@ -1,8 +1,8 @@
 
 data {
-  int N;//number of years analyzed
-  vector[N] income; //number of miles flown each year
-  int y[N];//number of fatal accidents
+  int N; // number of years analyzed
+  vector[N] income; // income
+  int y[N]; // number of married
 }
 parameters {
   real theta;
@@ -10,16 +10,16 @@ parameters {
 }
 
 model {
-  theta ~ normal(0.0002, 0.00001);
-  alpha ~ normal(2,0.1);
+  theta ~ normal(0.85, 0.20);
+  alpha ~ normal(158000, 15000);
   for (n in 1:N) {
-    y[n] ~ poisson_log(alpha + income[n]*theta);
+    y[n] ~ poisson(alpha - income[n]*theta);
   }
 }
 
 generated quantities {
   int y_sim[N];
   for (n in 1:N) {
-    y_sim[n] = poisson_log_rng(alpha + income[n]*theta);
+    y_sim[n] = poisson_rng(alpha - income[n]*theta);
   }
 }

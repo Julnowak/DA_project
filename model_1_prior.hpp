@@ -10,16 +10,16 @@ using namespace stan::math;
 stan::math::profile_map profiles__;
 static constexpr std::array<const char*, 11> locations_array__ = 
 {" (found before start of program)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 8, column 2 to column 47)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 9, column 2 to column 33)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 10, column 2 to column 15)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 12, column 4 to column 56)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 11, column 17 to line 13, column 3)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 11, column 2 to line 13, column 3)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 8, column 2 to column 38)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 9, column 2 to column 41)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 11, column 2 to column 15)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 13, column 4 to column 52)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 12, column 17 to line 14, column 3)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 12, column 2 to line 14, column 3)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 2, column 2 to column 8)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 3, column 9 to column 10)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 3, column 2 to column 19)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 10, column 12 to column 13)"};
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 11, column 12 to column 13)"};
 
 
 
@@ -160,19 +160,18 @@ class model_1_prior_model final : public model_base_crtp<model_1_prior_model> {
       } 
       double theta = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 1;
-      theta = stan::math::fabs(
-                stan::math::normal_rng(0.0002, 0.00001, base_rng__));
+      theta = stan::math::normal_rng(0.85, 0.20, base_rng__);
       double alpha = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 2;
-      alpha = stan::math::normal_rng(2, 0.1, base_rng__);
+      alpha = stan::math::normal_rng(158000, 15000, base_rng__);
       std::vector<int> y_sim =
          std::vector<int>(N, std::numeric_limits<int>::min());
       current_statement__ = 6;
       for (int n = 1; n <= N; ++n) {
         current_statement__ = 4;
         stan::model::assign(y_sim,
-          stan::math::poisson_log_rng(
-            (alpha +
+          stan::math::poisson_rng(
+            (alpha -
               (theta *
                 stan::model::rvalue(income, "income",
                   stan::model::index_uni(n)))), base_rng__),
