@@ -146,14 +146,14 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
         lp_accum__.add(stan::math::normal_lpdf<propto__>(theta, 0.85, 0.20));
         current_statement__ = 8;
         lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(alpha, 100000, 15000));
+          stan::math::normal_lpdf<propto__>(alpha, 158000, 15000));
         current_statement__ = 11;
         for (int n = 1; n <= N; ++n) {
           current_statement__ = 9;
           lp_accum__.add(
             stan::math::poisson_lpmf<propto__>(
               stan::model::rvalue(y, "y", stan::model::index_uni(n)),
-              (alpha +
+              (alpha -
                 (stan::model::rvalue(income, "income",
                    stan::model::index_uni(n)) * theta))));
         }
@@ -213,7 +213,7 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
         current_statement__ = 4;
         stan::model::assign(y_sim,
           stan::math::poisson_rng(
-            (alpha +
+            (alpha -
               (stan::model::rvalue(income, "income",
                  stan::model::index_uni(n)) * theta)), base_rng__),
           "assigning variable y_sim", stan::model::index_uni(n));
