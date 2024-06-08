@@ -10,6 +10,6 @@ generated quantities {
   // real alpha = normal_rng(100000, 15000);
   int y_sim[N];
   for (n in 1:N) {
-    y_sim[n] = poisson_rng(alpha - theta*income[n]);
+    y_sim[n] = poisson_rng(alpha - theta*income[n], 10);
   }
 }
