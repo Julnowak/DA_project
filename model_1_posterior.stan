@@ -1,25 +1,26 @@
 
 data {
   int N; // number of years analyzed
-  vector[N] income; // income
-  int y[N]; // number of married
+  array[N] real income; // income
+  array[N] int y; // number of married
 }
 parameters {
-  real theta;
-  real alpha;
+  real<lower=0> beta;
+  real<lower=0> alpha;
 }
 
 model {
-  theta ~ normal(0.85, 0.20);
-  alpha ~ normal(158000, 15000);
+  alpha ~ normal(0.782, 0.02);
+  beta ~ normal(154440, 15000);
+  
   for (n in 1:N) {
-    y[n] ~ poisson(alpha - income[n]*theta);
+    y[n] ~ poisson(alpha*income[n] + beta);
   }
 }
 
 generated quantities {
-  int y_sim[N];
+  array[N] int y_sim;
   for (n in 1:N) {
-    y_sim[n] = poisson_rng(alpha - income[n]*theta);
+    y_sim[n] = poisson_rng(alpha*income[n] + beta);
   }
 }

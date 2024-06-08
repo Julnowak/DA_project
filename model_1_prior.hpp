@@ -10,16 +10,16 @@ using namespace stan::math;
 stan::math::profile_map profiles__;
 static constexpr std::array<const char*, 11> locations_array__ = 
 {" (found before start of program)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 8, column 2 to column 38)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 9, column 2 to column 41)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 11, column 2 to column 15)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 13, column 4 to column 52)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 12, column 17 to line 14, column 3)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 12, column 2 to line 14, column 3)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 8, column 2 to column 39)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 9, column 2 to column 40)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 13, column 2 to column 21)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 16, column 4 to column 51)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 15, column 17 to line 17, column 3)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 15, column 2 to line 17, column 3)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 2, column 2 to column 8)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 3, column 9 to column 10)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 3, column 2 to column 19)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 11, column 12 to column 13)"};
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 3, column 8 to column 9)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 3, column 2 to column 23)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_prior.stan', line 13, column 8 to column 9)"};
 
 
 
@@ -28,8 +28,8 @@ class model_1_prior_model final : public model_base_crtp<model_1_prior_model> {
 
  private:
   int N;
-  Eigen::Matrix<double, -1, 1> income_data__; 
-  Eigen::Map<Eigen::Matrix<double, -1, 1>> income{nullptr, 0};
+  std::vector<double> income; 
+  
  
  public:
   ~model_1_prior_model() { }
@@ -69,27 +69,12 @@ class model_1_prior_model final : public model_base_crtp<model_1_prior_model> {
       current_statement__ = 9;
       context__.validate_dims("data initialization","income","double",
            std::vector<size_t>{static_cast<size_t>(N)});
-      income_data__ = 
-        Eigen::Matrix<double, -1, 1>::Constant(N,
-          std::numeric_limits<double>::quiet_NaN());
-      new (&income) Eigen::Map<Eigen::Matrix<double, -1, 1>>(income_data__.data(), N);
-        
+      income = 
+        std::vector<double>(N, std::numeric_limits<double>::quiet_NaN());
       
-      {
-        std::vector<local_scalar_t__> income_flat__;
-        current_statement__ = 9;
-        income_flat__ = context__.vals_r("income");
-        current_statement__ = 9;
-        pos__ = 1;
-        current_statement__ = 9;
-        for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 9;
-          stan::model::assign(income, income_flat__[(pos__ - 1)],
-            "assigning variable income", stan::model::index_uni(sym1__));
-          current_statement__ = 9;
-          pos__ = (pos__ + 1);
-        }
-      }
+      
+      current_statement__ = 9;
+      income = context__.vals_r("income");
       current_statement__ = 10;
       stan::math::validate_non_negative_index("y_sim", "N", N);
     } catch (const std::exception& e) {
@@ -158,12 +143,12 @@ class model_1_prior_model final : public model_base_crtp<model_1_prior_model> {
       if (stan::math::logical_negation(emit_generated_quantities__)) {
         return ;
       } 
-      double theta = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 1;
-      theta = stan::math::normal_rng(0.85, 0.20, base_rng__);
       double alpha = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 1;
+      alpha = stan::math::normal_rng(0.782, 0.02, base_rng__);
+      double beta = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 2;
-      alpha = stan::math::normal_rng(158000, 15000, base_rng__);
+      beta = stan::math::normal_rng(154440, 15000, base_rng__);
       std::vector<int> y_sim =
          std::vector<int>(N, std::numeric_limits<int>::min());
       current_statement__ = 6;
@@ -171,14 +156,13 @@ class model_1_prior_model final : public model_base_crtp<model_1_prior_model> {
         current_statement__ = 4;
         stan::model::assign(y_sim,
           stan::math::poisson_rng(
-            (alpha -
-              (theta *
-                stan::model::rvalue(income, "income",
-                  stan::model::index_uni(n)))), base_rng__),
+            ((alpha *
+               stan::model::rvalue(income, "income",
+                 stan::model::index_uni(n))) + beta), base_rng__),
           "assigning variable y_sim", stan::model::index_uni(n));
       }
-      out__.write(theta);
       out__.write(alpha);
+      out__.write(beta);
       out__.write(y_sim);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -207,7 +191,7 @@ class model_1_prior_model final : public model_base_crtp<model_1_prior_model> {
     
   inline void get_param_names(std::vector<std::string>& names__) const {
     
-    names__ = std::vector<std::string>{"theta", "alpha", "y_sim"};
+    names__ = std::vector<std::string>{"alpha", "beta", "y_sim"};
     
     } // get_param_names() 
     
@@ -230,8 +214,8 @@ class model_1_prior_model final : public model_base_crtp<model_1_prior_model> {
     }
     
     if (emit_generated_quantities__) {
-      param_names__.emplace_back(std::string() + "theta");
       param_names__.emplace_back(std::string() + "alpha");
+      param_names__.emplace_back(std::string() + "beta");
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "y_sim" + '.' + std::to_string(sym1__));
@@ -253,8 +237,8 @@ class model_1_prior_model final : public model_base_crtp<model_1_prior_model> {
     }
     
     if (emit_generated_quantities__) {
-      param_names__.emplace_back(std::string() + "theta");
       param_names__.emplace_back(std::string() + "alpha");
+      param_names__.emplace_back(std::string() + "beta");
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "y_sim" + '.' + std::to_string(sym1__));
@@ -266,13 +250,13 @@ class model_1_prior_model final : public model_base_crtp<model_1_prior_model> {
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"theta\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"theta\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     

@@ -10,23 +10,23 @@ using namespace stan::math;
 stan::math::profile_map profiles__;
 static constexpr std::array<const char*, 18> locations_array__ = 
 {" (found before start of program)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 8, column 2 to column 13)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 9, column 2 to column 13)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 21, column 2 to column 15)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 23, column 4 to column 52)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 22, column 17 to line 24, column 3)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 22, column 2 to line 24, column 3)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 13, column 2 to column 29)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 14, column 2 to column 32)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 16, column 4 to column 44)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 15, column 17 to line 17, column 3)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 15, column 2 to line 17, column 3)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 8, column 2 to column 21)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 9, column 2 to column 22)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 22, column 2 to column 21)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 24, column 4 to column 51)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 23, column 17 to line 25, column 3)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 23, column 2 to line 25, column 3)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 13, column 2 to column 30)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 14, column 2 to column 31)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 17, column 4 to column 43)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 16, column 17 to line 18, column 3)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 16, column 2 to line 18, column 3)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 3, column 2 to column 8)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 4, column 9 to column 10)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 4, column 2 to column 19)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 4, column 8 to column 9)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 4, column 2 to column 23)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 5, column 8 to column 9)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 5, column 2 to column 11)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 21, column 12 to column 13)"};
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 5, column 2 to column 17)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_1_posterior.stan', line 22, column 8 to column 9)"};
 
 
 
@@ -35,9 +35,9 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
 
  private:
   int N;
-  Eigen::Matrix<double, -1, 1> income_data__;
+  std::vector<double> income;
   std::vector<int> y; 
-  Eigen::Map<Eigen::Matrix<double, -1, 1>> income{nullptr, 0};
+  
  
  public:
   ~model_1_posterior_model() { }
@@ -77,27 +77,12 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
       current_statement__ = 14;
       context__.validate_dims("data initialization","income","double",
            std::vector<size_t>{static_cast<size_t>(N)});
-      income_data__ = 
-        Eigen::Matrix<double, -1, 1>::Constant(N,
-          std::numeric_limits<double>::quiet_NaN());
-      new (&income) Eigen::Map<Eigen::Matrix<double, -1, 1>>(income_data__.data(), N);
-        
+      income = 
+        std::vector<double>(N, std::numeric_limits<double>::quiet_NaN());
       
-      {
-        std::vector<local_scalar_t__> income_flat__;
-        current_statement__ = 14;
-        income_flat__ = context__.vals_r("income");
-        current_statement__ = 14;
-        pos__ = 1;
-        current_statement__ = 14;
-        for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 14;
-          stan::model::assign(income, income_flat__[(pos__ - 1)],
-            "assigning variable income", stan::model::index_uni(sym1__));
-          current_statement__ = 14;
-          pos__ = (pos__ + 1);
-        }
-      }
+      
+      current_statement__ = 14;
+      income = context__.vals_r("income");
       current_statement__ = 15;
       stan::math::validate_non_negative_index("y", "N", N);
       current_statement__ = 16;
@@ -135,27 +120,28 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
     (void) function__;  // suppress unused var warning
     
     try {
-      local_scalar_t__ theta = DUMMY_VAR__;
+      local_scalar_t__ beta = DUMMY_VAR__;
       current_statement__ = 1;
-      theta = in__.template read<local_scalar_t__>();
+      beta = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(0,
+               lp__);
       local_scalar_t__ alpha = DUMMY_VAR__;
       current_statement__ = 2;
-      alpha = in__.template read<local_scalar_t__>();
+      alpha = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
       {
         current_statement__ = 7;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(theta, 0.85, 0.20));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0.782, 0.02));
         current_statement__ = 8;
-        lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(alpha, 158000, 15000));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 154440, 15000));
         current_statement__ = 11;
         for (int n = 1; n <= N; ++n) {
           current_statement__ = 9;
           lp_accum__.add(
             stan::math::poisson_lpmf<propto__>(
               stan::model::rvalue(y, "y", stan::model::index_uni(n)),
-              (alpha -
-                (stan::model::rvalue(income, "income",
-                   stan::model::index_uni(n)) * theta))));
+              ((alpha *
+                 stan::model::rvalue(income, "income",
+                   stan::model::index_uni(n))) + beta)));
         }
       }
     } catch (const std::exception& e) {
@@ -190,13 +176,15 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
     (void) function__;  // suppress unused var warning
     
     try {
-      double theta = std::numeric_limits<double>::quiet_NaN();
+      double beta = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 1;
-      theta = in__.template read<local_scalar_t__>();
+      beta = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(0,
+               lp__);
       double alpha = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 2;
-      alpha = in__.template read<local_scalar_t__>();
-      out__.write(theta);
+      alpha = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
+                0, lp__);
+      out__.write(beta);
       out__.write(alpha);
       if (stan::math::logical_negation((stan::math::primitive_value(
             emit_transformed_parameters__) || stan::math::primitive_value(
@@ -213,9 +201,9 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
         current_statement__ = 4;
         stan::model::assign(y_sim,
           stan::math::poisson_rng(
-            (alpha -
-              (stan::model::rvalue(income, "income",
-                 stan::model::index_uni(n)) * theta)), base_rng__),
+            ((alpha *
+               stan::model::rvalue(income, "income",
+                 stan::model::index_uni(n))) + beta), base_rng__),
           "assigning variable y_sim", stan::model::index_uni(n));
       }
       out__.write(y_sim);
@@ -239,12 +227,12 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      local_scalar_t__ theta = DUMMY_VAR__;
-      theta = in__.read<local_scalar_t__>();
-      out__.write(theta);
+      local_scalar_t__ beta = DUMMY_VAR__;
+      beta = in__.read<local_scalar_t__>();
+      out__.write_free_lb(0, beta);
       local_scalar_t__ alpha = DUMMY_VAR__;
       alpha = in__.read<local_scalar_t__>();
-      out__.write(alpha);
+      out__.write_free_lb(0, alpha);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -252,7 +240,7 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
     
   inline void get_param_names(std::vector<std::string>& names__) const {
     
-    names__ = std::vector<std::string>{"theta", "alpha", "y_sim"};
+    names__ = std::vector<std::string>{"beta", "alpha", "y_sim"};
     
     } // get_param_names() 
     
@@ -269,7 +257,7 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
                                       bool emit_generated_quantities__ = true) const
     final {
     
-    param_names__.emplace_back(std::string() + "theta");
+    param_names__.emplace_back(std::string() + "beta");
     param_names__.emplace_back(std::string() + "alpha");
     if (emit_transformed_parameters__) {
       
@@ -291,7 +279,7 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
                                         bool emit_generated_quantities__ = true) const
     final {
     
-    param_names__.emplace_back(std::string() + "theta");
+    param_names__.emplace_back(std::string() + "beta");
     param_names__.emplace_back(std::string() + "alpha");
     if (emit_transformed_parameters__) {
       
@@ -309,13 +297,13 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"theta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"theta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"int\"}},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
@@ -389,7 +377,7 @@ class model_1_posterior_model final : public model_base_crtp<model_1_posterior_m
                               std::vector<int>& params_i,
                               std::vector<double>& vars,
                               std::ostream* pstream__ = nullptr) const {
-     constexpr std::array<const char*, 2> names__{"theta", "alpha"};
+     constexpr std::array<const char*, 2> names__{"beta", "alpha"};
       const std::array<Eigen::Index, 2> constrain_param_sizes__{1, 1};
       const auto num_constrained_params__ = std::accumulate(
         constrain_param_sizes__.begin(), constrain_param_sizes__.end(), 0);
