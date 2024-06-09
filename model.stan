@@ -13,8 +13,8 @@ parameters {
 model {
     //priors
     alpha ~ normal(0.8, 0.1);
-    beta ~ normal(108000, 2000);
-    sigma ~ normal(1000,500);
+    beta ~ normal(105000, 2000);
+    sigma ~ normal(1000,100);
     
     for(i in 1:N)
         y ~ normal(alpha * income[i]  + beta , sigma); //likelihood

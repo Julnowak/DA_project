@@ -142,9 +142,9 @@ class model_model final : public model_base_crtp<model_model> {
         current_statement__ = 10;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0.8, 0.1));
         current_statement__ = 11;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 108000, 2000));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 105000, 2000));
         current_statement__ = 12;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 1000, 500));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 1000, 100));
         current_statement__ = 14;
         for (int i = 1; i <= N; ++i) {
           current_statement__ = 13;

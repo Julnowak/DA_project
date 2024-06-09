@@ -8,22 +8,21 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 15> locations_array__ = 
+static constexpr std::array<const char*, 14> locations_array__ = 
 {" (found before start of program)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 8, column 4 to column 38)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 8, column 38 to column 39)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 9, column 4 to column 41)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 9, column 41 to column 42)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 10, column 4 to column 48)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 12, column 4 to column 20)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 15, column 5 to column 61)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 14, column 4 to line 15, column 61)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 8, column 4 to column 42)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 9, column 4 to column 42)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 10, column 4 to column 40)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 11, column 4 to column 48)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 13, column 4 to column 20)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 16, column 5 to column 89)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 15, column 4 to line 16, column 89)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 2, column 4 to column 19)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 3, column 11 to column 12)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 3, column 4 to column 21)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 4, column 11 to column 12)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 4, column 4 to column 24)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 12, column 11 to column 12)"};
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 13, column 11 to column 12)"};
 
 
 
@@ -62,19 +61,19 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 9;
+      current_statement__ = 8;
       context__.validate_dims("data initialization","N","int",
            std::vector<size_t>{});
       N = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 9;
+      current_statement__ = 8;
       N = context__.vals_i("N")[(1 - 1)];
-      current_statement__ = 9;
+      current_statement__ = 8;
       stan::math::check_greater_or_equal(function__, "N", N, 0);
-      current_statement__ = 10;
+      current_statement__ = 9;
       stan::math::validate_non_negative_index("income", "N", N);
-      current_statement__ = 11;
+      current_statement__ = 10;
       context__.validate_dims("data initialization","income","double",
            std::vector<size_t>{static_cast<size_t>(N)});
       income_data__ = 
@@ -85,22 +84,22 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
       
       {
         std::vector<local_scalar_t__> income_flat__;
-        current_statement__ = 11;
+        current_statement__ = 10;
         income_flat__ = context__.vals_r("income");
-        current_statement__ = 11;
+        current_statement__ = 10;
         pos__ = 1;
-        current_statement__ = 11;
+        current_statement__ = 10;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 11;
+          current_statement__ = 10;
           stan::model::assign(income, income_flat__[(pos__ - 1)],
             "assigning variable income", stan::model::index_uni(sym1__));
-          current_statement__ = 11;
+          current_statement__ = 10;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 12;
+      current_statement__ = 11;
       stan::math::validate_non_negative_index("household", "N", N);
-      current_statement__ = 13;
+      current_statement__ = 12;
       context__.validate_dims("data initialization","household","double",
            std::vector<size_t>{static_cast<size_t>(N)});
       household_data__ = 
@@ -111,20 +110,20 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
       
       {
         std::vector<local_scalar_t__> household_flat__;
-        current_statement__ = 13;
+        current_statement__ = 12;
         household_flat__ = context__.vals_r("household");
-        current_statement__ = 13;
+        current_statement__ = 12;
         pos__ = 1;
-        current_statement__ = 13;
+        current_statement__ = 12;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 13;
+          current_statement__ = 12;
           stan::model::assign(household, household_flat__[(pos__ - 1)],
             "assigning variable household", stan::model::index_uni(sym1__));
-          current_statement__ = 13;
+          current_statement__ = 12;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 14;
+      current_statement__ = 13;
       stan::math::validate_non_negative_index("y_sim", "N", N);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -192,33 +191,38 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
       if (stan::math::logical_negation(emit_generated_quantities__)) {
         return ;
       } 
-      double alpha = std::numeric_limits<double>::quiet_NaN();
+      double alpha_1 = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 1;
-      alpha = stan::math::normal_rng(0.8, 0.1, base_rng__);
-      ;
+      alpha_1 = stan::math::normal_rng(0.14, 0.05, base_rng__);
+      double alpha_2 = std::numeric_limits<double>::quiet_NaN();
+      current_statement__ = 2;
+      alpha_2 = stan::math::normal_rng(0.75, 0.05, base_rng__);
       double beta = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
-      beta = stan::math::normal_rng(108000, 2000, base_rng__);
-      ;
+      beta = stan::math::normal_rng(39000, 2000, base_rng__);
       double sigma = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 5;
+      current_statement__ = 4;
       sigma = stan::math::fabs(stan::math::normal_rng(0, 1, base_rng__));
       Eigen::Matrix<double, -1, 1> y_sim =
          Eigen::Matrix<double, -1, 1>::Constant(N,
            std::numeric_limits<double>::quiet_NaN());
-      current_statement__ = 8;
+      current_statement__ = 7;
       for (int i = 1; i <= N; ++i) {
-        current_statement__ = 7;
+        current_statement__ = 6;
         stan::model::assign(y_sim,
           stan::math::normal_rng(
-            ((alpha *
-               stan::model::rvalue(income, "income",
-                 stan::model::index_uni(i))) + beta), sigma, base_rng__),
+            (((-alpha_1 *
+                stan::model::rvalue(income, "income",
+                  stan::model::index_uni(i))) +
+               (alpha_2 *
+                 stan::model::rvalue(household, "household",
+                   stan::model::index_uni(i)))) + beta), sigma, base_rng__),
           "assigning variable y_sim", stan::model::index_uni(i));
       }
-      current_statement__ = 5;
+      current_statement__ = 4;
       stan::math::check_greater_or_equal(function__, "sigma", sigma, 0);
-      out__.write(alpha);
+      out__.write(alpha_1);
+      out__.write(alpha_2);
       out__.write(beta);
       out__.write(sigma);
       out__.write(y_sim);
@@ -249,15 +253,16 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
     
   inline void get_param_names(std::vector<std::string>& names__) const {
     
-    names__ = std::vector<std::string>{"alpha", "beta", "sigma", "y_sim"};
+    names__ = std::vector<std::string>{"alpha_1", "alpha_2", "beta", "sigma",
+      "y_sim"};
     
     } // get_param_names() 
     
   inline void get_dims(std::vector<std::vector<size_t>>& dimss__) const {
     
     dimss__ = std::vector<std::vector<size_t>>{std::vector<size_t>{},
-      std::vector<size_t>{}, std::vector<size_t>{},
-      std::vector<size_t>{static_cast<size_t>(N)}};
+      std::vector<size_t>{}, std::vector<size_t>{}, std::vector<size_t>{
+      }, std::vector<size_t>{static_cast<size_t>(N)}};
     
     } // get_dims() 
     
@@ -273,7 +278,8 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
     }
     
     if (emit_generated_quantities__) {
-      param_names__.emplace_back(std::string() + "alpha");
+      param_names__.emplace_back(std::string() + "alpha_1");
+      param_names__.emplace_back(std::string() + "alpha_2");
       param_names__.emplace_back(std::string() + "beta");
       param_names__.emplace_back(std::string() + "sigma");
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
@@ -297,7 +303,8 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
     }
     
     if (emit_generated_quantities__) {
-      param_names__.emplace_back(std::string() + "alpha");
+      param_names__.emplace_back(std::string() + "alpha_1");
+      param_names__.emplace_back(std::string() + "alpha_2");
       param_names__.emplace_back(std::string() + "beta");
       param_names__.emplace_back(std::string() + "sigma");
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
@@ -311,13 +318,13 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha_1\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"alpha_2\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha_1\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"alpha_2\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"generated_quantities\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
@@ -333,7 +340,7 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
       const size_t num_params__ = 0;
       const size_t num_transformed = emit_transformed_parameters * 0;
       const size_t num_gen_quantities = emit_generated_quantities * 
-  (((1 + 1) + 1) + N);
+  ((((1 + 1) + 1) + 1) + N);
       const size_t num_to_write = num_params__ + num_transformed +
         num_gen_quantities;
       std::vector<int> params_i;
@@ -353,7 +360,7 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
       const size_t num_params__ = 0;
       const size_t num_transformed = emit_transformed_parameters * 0;
       const size_t num_gen_quantities = emit_generated_quantities * 
-  (((1 + 1) + 1) + N);
+  ((((1 + 1) + 1) + 1) + N);
       const size_t num_to_write = num_params__ + num_transformed +
         num_gen_quantities;
       vars = std::vector<double>(num_to_write,
