@@ -8,24 +8,29 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 17> locations_array__ = 
+static constexpr std::array<const char*, 22> locations_array__ = 
 {" (found before start of program)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 8, column 4 to column 15)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 9, column 4 to column 14)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 10, column 4 to column 24)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 23, column 4 to column 20)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 26, column 5 to column 61)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 25, column 4 to line 26, column 61)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 24, column 4 to column 24)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 25, column 4 to column 26)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 28, column 8 to column 64)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 29, column 8 to column 74)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 27, column 17 to line 30, column 5)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 27, column 4 to line 30, column 5)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 15, column 4 to column 29)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 16, column 4 to column 32)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 17, column 4 to column 24)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 19, column 4 to column 47)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 17, column 4 to column 29)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 20, column 8 to column 54)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 19, column 4 to line 20, column 54)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 2, column 4 to column 19)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 3, column 11 to column 12)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 3, column 4 to column 21)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 4, column 11 to column 12)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 4, column 4 to column 16)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 23, column 11 to column 12)"};
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 3, column 10 to column 11)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 3, column 4 to column 25)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 4, column 10 to column 11)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 4, column 4 to column 20)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 24, column 10 to column 11)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 25, column 10 to column 11)"};
 
 
 
@@ -34,10 +39,9 @@ class model_model final : public model_base_crtp<model_model> {
 
  private:
   int N;
-  Eigen::Matrix<double, -1, 1> income_data__;
-  Eigen::Matrix<double, -1, 1> y_data__; 
-  Eigen::Map<Eigen::Matrix<double, -1, 1>> income{nullptr, 0};
-  Eigen::Map<Eigen::Matrix<double, -1, 1>> y{nullptr, 0};
+  std::vector<double> income;
+  std::vector<double> y; 
+  
  
  public:
   ~model_model() { }
@@ -64,69 +68,41 @@ class model_model final : public model_base_crtp<model_model> {
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 11;
+      current_statement__ = 15;
       context__.validate_dims("data initialization","N","int",
            std::vector<size_t>{});
       N = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 11;
+      current_statement__ = 15;
       N = context__.vals_i("N")[(1 - 1)];
-      current_statement__ = 11;
+      current_statement__ = 15;
       stan::math::check_greater_or_equal(function__, "N", N, 0);
-      current_statement__ = 12;
+      current_statement__ = 16;
       stan::math::validate_non_negative_index("income", "N", N);
-      current_statement__ = 13;
+      current_statement__ = 17;
       context__.validate_dims("data initialization","income","double",
            std::vector<size_t>{static_cast<size_t>(N)});
-      income_data__ = 
-        Eigen::Matrix<double, -1, 1>::Constant(N,
-          std::numeric_limits<double>::quiet_NaN());
-      new (&income) Eigen::Map<Eigen::Matrix<double, -1, 1>>(income_data__.data(), N);
-        
+      income = 
+        std::vector<double>(N, std::numeric_limits<double>::quiet_NaN());
       
-      {
-        std::vector<local_scalar_t__> income_flat__;
-        current_statement__ = 13;
-        income_flat__ = context__.vals_r("income");
-        current_statement__ = 13;
-        pos__ = 1;
-        current_statement__ = 13;
-        for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 13;
-          stan::model::assign(income, income_flat__[(pos__ - 1)],
-            "assigning variable income", stan::model::index_uni(sym1__));
-          current_statement__ = 13;
-          pos__ = (pos__ + 1);
-        }
-      }
-      current_statement__ = 14;
+      
+      current_statement__ = 17;
+      income = context__.vals_r("income");
+      current_statement__ = 18;
       stan::math::validate_non_negative_index("y", "N", N);
-      current_statement__ = 15;
+      current_statement__ = 19;
       context__.validate_dims("data initialization","y","double",
            std::vector<size_t>{static_cast<size_t>(N)});
-      y_data__ = 
-        Eigen::Matrix<double, -1, 1>::Constant(N,
-          std::numeric_limits<double>::quiet_NaN());
-      new (&y) Eigen::Map<Eigen::Matrix<double, -1, 1>>(y_data__.data(), N);
+      y = std::vector<double>(N, std::numeric_limits<double>::quiet_NaN());
       
-      {
-        std::vector<local_scalar_t__> y_flat__;
-        current_statement__ = 15;
-        y_flat__ = context__.vals_r("y");
-        current_statement__ = 15;
-        pos__ = 1;
-        current_statement__ = 15;
-        for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 15;
-          stan::model::assign(y, y_flat__[(pos__ - 1)],
-            "assigning variable y", stan::model::index_uni(sym1__));
-          current_statement__ = 15;
-          pos__ = (pos__ + 1);
-        }
-      }
-      current_statement__ = 16;
+      
+      current_statement__ = 19;
+      y = context__.vals_r("y");
+      current_statement__ = 20;
       stan::math::validate_non_negative_index("y_sim", "N", N);
+      current_statement__ = 21;
+      stan::math::validate_non_negative_index("log_lik", "N", N);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -163,17 +139,21 @@ class model_model final : public model_base_crtp<model_model> {
       sigma = in__.template read_constrain_lb<local_scalar_t__, jacobian__>(
                 0, lp__);
       {
-        current_statement__ = 7;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0.8, 0.1));
-        current_statement__ = 8;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 108000, 2000));
-        current_statement__ = 9;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 0, 1));
         current_statement__ = 10;
-        lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(y,
-            stan::math::add(stan::math::multiply(alpha, income), beta),
-            sigma));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0.8, 0.1));
+        current_statement__ = 11;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 108000, 2000));
+        current_statement__ = 12;
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 1000, 500));
+        current_statement__ = 14;
+        for (int i = 1; i <= N; ++i) {
+          current_statement__ = 13;
+          lp_accum__.add(
+            stan::math::normal_lpdf<propto__>(y,
+              ((alpha *
+                 stan::model::rvalue(income, "income",
+                   stan::model::index_uni(i))) + beta), sigma));
+        }
       }
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -228,20 +208,30 @@ class model_model final : public model_base_crtp<model_model> {
       if (stan::math::logical_negation(emit_generated_quantities__)) {
         return ;
       } 
-      Eigen::Matrix<double, -1, 1> y_sim =
-         Eigen::Matrix<double, -1, 1>::Constant(N,
-           std::numeric_limits<double>::quiet_NaN());
-      current_statement__ = 6;
+      std::vector<double> y_sim =
+         std::vector<double>(N, std::numeric_limits<double>::quiet_NaN());
+      std::vector<double> log_lik =
+         std::vector<double>(N, std::numeric_limits<double>::quiet_NaN());
+      current_statement__ = 9;
       for (int i = 1; i <= N; ++i) {
-        current_statement__ = 5;
+        current_statement__ = 6;
         stan::model::assign(y_sim,
           stan::math::normal_rng(
             ((alpha *
                stan::model::rvalue(income, "income",
                  stan::model::index_uni(i))) + beta), sigma, base_rng__),
           "assigning variable y_sim", stan::model::index_uni(i));
+        current_statement__ = 7;
+        stan::model::assign(log_lik,
+          stan::math::normal_lpdf<false>(
+            stan::model::rvalue(y, "y", stan::model::index_uni(i)),
+            ((alpha *
+               stan::model::rvalue(income, "income",
+                 stan::model::index_uni(i))) + beta), sigma),
+          "assigning variable log_lik", stan::model::index_uni(i));
       }
       out__.write(y_sim);
+      out__.write(log_lik);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
     }
@@ -278,7 +268,8 @@ class model_model final : public model_base_crtp<model_model> {
     
   inline void get_param_names(std::vector<std::string>& names__) const {
     
-    names__ = std::vector<std::string>{"alpha", "beta", "sigma", "y_sim"};
+    names__ = std::vector<std::string>{"alpha", "beta", "sigma", "y_sim",
+      "log_lik"};
     
     } // get_param_names() 
     
@@ -286,6 +277,7 @@ class model_model final : public model_base_crtp<model_model> {
     
     dimss__ = std::vector<std::vector<size_t>>{std::vector<size_t>{},
       std::vector<size_t>{}, std::vector<size_t>{},
+      std::vector<size_t>{static_cast<size_t>(N)},
       std::vector<size_t>{static_cast<size_t>(N)}};
     
     } // get_dims() 
@@ -307,6 +299,11 @@ class model_model final : public model_base_crtp<model_model> {
       for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
         {
           param_names__.emplace_back(std::string() + "y_sim" + '.' + std::to_string(sym1__));
+        } 
+      }
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
         } 
       }
     }
@@ -332,19 +329,24 @@ class model_model final : public model_base_crtp<model_model> {
           param_names__.emplace_back(std::string() + "y_sim" + '.' + std::to_string(sym1__));
         } 
       }
+      for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
+        {
+          param_names__.emplace_back(std::string() + "log_lik" + '.' + std::to_string(sym1__));
+        } 
+      }
     }
     
     } // unconstrained_param_names() 
     
   inline std::string get_constrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"}]");
     
     } // get_constrained_sizedtypes() 
     
   inline std::string get_unconstrained_sizedtypes() const {
     
-    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"vector\",\"length\":" + std::to_string(N) + "},\"block\":\"generated_quantities\"}]");
+    return std::string("[{\"name\":\"alpha\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"beta\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"sigma\",\"type\":{\"name\":\"real\"},\"block\":\"parameters\"},{\"name\":\"y_sim\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"},{\"name\":\"log_lik\",\"type\":{\"name\":\"array\",\"length\":" + std::to_string(N) + ",\"element_type\":{\"name\":\"real\"}},\"block\":\"generated_quantities\"}]");
     
     } // get_unconstrained_sizedtypes() 
     
@@ -360,7 +362,8 @@ class model_model final : public model_base_crtp<model_model> {
       const size_t num_params__ = 
   ((1 + 1) + 1);
       const size_t num_transformed = emit_transformed_parameters * 0;
-      const size_t num_gen_quantities = emit_generated_quantities * N;
+      const size_t num_gen_quantities = emit_generated_quantities * 
+  (N + N);
       const size_t num_to_write = num_params__ + num_transformed +
         num_gen_quantities;
       std::vector<int> params_i;
@@ -380,7 +383,8 @@ class model_model final : public model_base_crtp<model_model> {
       const size_t num_params__ = 
   ((1 + 1) + 1);
       const size_t num_transformed = emit_transformed_parameters * 0;
-      const size_t num_gen_quantities = emit_generated_quantities * N;
+      const size_t num_gen_quantities = emit_generated_quantities * 
+  (N + N);
       const size_t num_to_write = num_params__ + num_transformed +
         num_gen_quantities;
       vars = std::vector<double>(num_to_write,

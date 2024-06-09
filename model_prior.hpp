@@ -8,13 +8,11 @@ using namespace stan::math;
 
 
 stan::math::profile_map profiles__;
-static constexpr std::array<const char*, 13> locations_array__ = 
+static constexpr std::array<const char*, 11> locations_array__ = 
 {" (found before start of program)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 7, column 4 to column 38)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 7, column 38 to column 39)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 8, column 4 to column 41)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 8, column 41 to column 42)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 9, column 4 to column 48)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 9, column 4 to column 53)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 11, column 4 to column 20)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 14, column 5 to column 61)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 13, column 4 to line 14, column 61)",
@@ -58,19 +56,19 @@ class model_prior_model final : public model_base_crtp<model_prior_model> {
     try {
       int pos__ = std::numeric_limits<int>::min();
       pos__ = 1;
-      current_statement__ = 9;
+      current_statement__ = 7;
       context__.validate_dims("data initialization","N","int",
            std::vector<size_t>{});
       N = std::numeric_limits<int>::min();
       
       
-      current_statement__ = 9;
+      current_statement__ = 7;
       N = context__.vals_i("N")[(1 - 1)];
-      current_statement__ = 9;
+      current_statement__ = 7;
       stan::math::check_greater_or_equal(function__, "N", N, 0);
-      current_statement__ = 10;
+      current_statement__ = 8;
       stan::math::validate_non_negative_index("income", "N", N);
-      current_statement__ = 11;
+      current_statement__ = 9;
       context__.validate_dims("data initialization","income","double",
            std::vector<size_t>{static_cast<size_t>(N)});
       income_data__ = 
@@ -81,20 +79,20 @@ class model_prior_model final : public model_base_crtp<model_prior_model> {
       
       {
         std::vector<local_scalar_t__> income_flat__;
-        current_statement__ = 11;
+        current_statement__ = 9;
         income_flat__ = context__.vals_r("income");
-        current_statement__ = 11;
+        current_statement__ = 9;
         pos__ = 1;
-        current_statement__ = 11;
+        current_statement__ = 9;
         for (int sym1__ = 1; sym1__ <= N; ++sym1__) {
-          current_statement__ = 11;
+          current_statement__ = 9;
           stan::model::assign(income, income_flat__[(pos__ - 1)],
             "assigning variable income", stan::model::index_uni(sym1__));
-          current_statement__ = 11;
+          current_statement__ = 9;
           pos__ = (pos__ + 1);
         }
       }
-      current_statement__ = 12;
+      current_statement__ = 10;
       stan::math::validate_non_negative_index("y_sim", "N", N);
     } catch (const std::exception& e) {
       stan::lang::rethrow_located(e, locations_array__[current_statement__]);
@@ -165,20 +163,18 @@ class model_prior_model final : public model_base_crtp<model_prior_model> {
       double alpha = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 1;
       alpha = stan::math::normal_rng(0.8, 0.1, base_rng__);
-      ;
       double beta = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 3;
+      current_statement__ = 2;
       beta = stan::math::normal_rng(108000, 2000, base_rng__);
-      ;
       double sigma = std::numeric_limits<double>::quiet_NaN();
-      current_statement__ = 5;
-      sigma = stan::math::fabs(stan::math::normal_rng(0, 1, base_rng__));
+      current_statement__ = 3;
+      sigma = stan::math::fabs(stan::math::normal_rng(1000, 500, base_rng__));
       Eigen::Matrix<double, -1, 1> y_sim =
          Eigen::Matrix<double, -1, 1>::Constant(N,
            std::numeric_limits<double>::quiet_NaN());
-      current_statement__ = 8;
+      current_statement__ = 6;
       for (int i = 1; i <= N; ++i) {
-        current_statement__ = 7;
+        current_statement__ = 5;
         stan::model::assign(y_sim,
           stan::math::normal_rng(
             ((alpha *
@@ -186,7 +182,7 @@ class model_prior_model final : public model_base_crtp<model_prior_model> {
                  stan::model::index_uni(i))) + beta), sigma, base_rng__),
           "assigning variable y_sim", stan::model::index_uni(i));
       }
-      current_statement__ = 5;
+      current_statement__ = 3;
       stan::math::check_greater_or_equal(function__, "sigma", sigma, 0);
       out__.write(alpha);
       out__.write(beta);

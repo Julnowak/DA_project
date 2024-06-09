@@ -1,7 +1,7 @@
 data {
     int<lower=0> N; //number of data
-    vector[N] income; //covariates
-    vector[N] y; //variates
+    array[N] real income; //covariates
+    array[N] real y; //variates
 }
 
 parameters {
@@ -14,14 +14,19 @@ model {
     //priors
     alpha ~ normal(0.8, 0.1);
     beta ~ normal(108000, 2000);
-    sigma ~ normal(0,1);
+    sigma ~ normal(1000,500);
     
-    y ~ normal(alpha * income  + beta , sigma); //likelihood
+    for(i in 1:N)
+        y ~ normal(alpha * income[i]  + beta , sigma); //likelihood
 }
 
 generated quantities {
-    vector[N] y_sim; //simulated data from posterior
-    
-    for(i in 1:N)
-	    y_sim[i] = normal_rng(alpha * income[i] + beta , sigma);
+    array[N] real y_sim; //simulated data from posterior
+    array[N] real log_lik;
+
+    for(i in 1:N){
+        y_sim[i] = normal_rng(alpha * income[i] + beta , sigma);
+        log_lik[i] = normal_lpdf(y[i] | alpha * income[i] + beta , sigma);
+    }
+	    
 }

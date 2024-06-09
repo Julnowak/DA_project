@@ -10,8 +10,8 @@ parameters {
 }
 
 model {
-  alpha ~ normal(0.782, 0.02);
-  beta ~ normal(154440, 15000);
+  alpha ~ normal(0.8, 0.1);
+  beta ~ normal(105000, 2000);
   
   for (n in 1:N) {
     y[n] ~ poisson(alpha*income[n] + beta);
