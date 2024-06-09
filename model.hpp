@@ -19,8 +19,8 @@ static constexpr std::array<const char*, 22> locations_array__ =
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 29, column 8 to column 74)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 27, column 17 to line 30, column 5)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 27, column 4 to line 30, column 5)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 15, column 4 to column 29)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 16, column 4 to column 32)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 15, column 4 to column 30)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 16, column 4 to column 31)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 17, column 4 to column 29)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 20, column 8 to column 54)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model.stan', line 19, column 4 to line 20, column 54)",
@@ -140,9 +140,9 @@ class model_model final : public model_base_crtp<model_model> {
                 0, lp__);
       {
         current_statement__ = 10;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0.8, 0.1));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 0.83, 0.1));
         current_statement__ = 11;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 105000, 2000));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 49000, 2000));
         current_statement__ = 12;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 1000, 100));
         current_statement__ = 14;

@@ -10,8 +10,8 @@ using namespace stan::math;
 stan::math::profile_map profiles__;
 static constexpr std::array<const char*, 11> locations_array__ = 
 {" (found before start of program)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 7, column 4 to column 38)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 8, column 4 to column 41)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 7, column 4 to column 39)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 8, column 4 to column 40)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 9, column 4 to column 53)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 11, column 4 to column 20)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/model_prior.stan', line 14, column 5 to column 61)",
@@ -162,10 +162,10 @@ class model_prior_model final : public model_base_crtp<model_prior_model> {
       } 
       double alpha = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 1;
-      alpha = stan::math::normal_rng(0.8, 0.1, base_rng__);
+      alpha = stan::math::normal_rng(0.83, 0.1, base_rng__);
       double beta = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 2;
-      beta = stan::math::normal_rng(105000, 2000, base_rng__);
+      beta = stan::math::normal_rng(49000, 2000, base_rng__);
       double sigma = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
       sigma = stan::math::fabs(stan::math::normal_rng(1000, 500, base_rng__));

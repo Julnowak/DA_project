@@ -20,10 +20,10 @@ static constexpr std::array<const char*, 26> locations_array__ =
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 32, column 8 to column 102)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 30, column 17 to line 33, column 5)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 30, column 4 to line 33, column 5)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 17, column 4 to column 33)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 18, column 4 to column 33)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 17, column 4 to column 35)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 18, column 4 to column 32)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 19, column 4 to column 31)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 20, column 4 to column 24)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 20, column 4 to column 29)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 23, column 8 to column 81)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 22, column 4 to line 23, column 81)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model_posterior.stan', line 2, column 4 to column 19)",
@@ -159,13 +159,14 @@ class triparam_model_posterior_model final : public model_base_crtp<triparam_mod
                 0, lp__);
       {
         current_statement__ = 11;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha_1, 0.14, 0.05));
+        lp_accum__.add(
+          stan::math::normal_lpdf<propto__>(alpha_1, 0.007, 0.001));
         current_statement__ = 12;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha_2, 0.75, 0.05));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha_2, 0.7, 0.05));
         current_statement__ = 13;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 39000, 2000));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 47500, 2000));
         current_statement__ = 14;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 0, 1));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 1000, 500));
         current_statement__ = 16;
         for (int i = 1; i <= N; ++i) {
           current_statement__ = 15;

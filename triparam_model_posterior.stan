@@ -14,10 +14,10 @@ parameters {
 
 model {
     //priors
-    alpha_1 ~ normal(0.14, 0.05);
-    alpha_2 ~ normal(0.75, 0.05);
-    beta ~ normal(39000, 2000);
-    sigma ~ normal(0,1);
+    alpha_1 ~ normal(0.007, 0.001);
+    alpha_2 ~ normal(0.7, 0.05);
+    beta ~ normal(47500, 2000);
+    sigma ~ normal(1000,500);
     
     for(i in 1:N)
         y ~ normal(-alpha_1 * income[i] + alpha_2 * household[i] + beta , sigma); //likelihood

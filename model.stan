@@ -12,8 +12,8 @@ parameters {
 
 model {
     //priors
-    alpha ~ normal(0.8, 0.1);
-    beta ~ normal(105000, 2000);
+    alpha ~ normal(0.83, 0.1);
+    beta ~ normal(49000, 2000);
     sigma ~ normal(1000,100);
     
     for(i in 1:N)
