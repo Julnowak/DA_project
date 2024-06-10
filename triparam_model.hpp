@@ -11,7 +11,7 @@ stan::math::profile_map profiles__;
 static constexpr std::array<const char*, 14> locations_array__ = 
 {" (found before start of program)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 8, column 4 to column 44)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 9, column 4 to column 41)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 9, column 4 to column 42)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 10, column 4 to column 40)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 11, column 4 to column 48)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/triparam_model.stan', line 13, column 4 to column 20)",
@@ -196,7 +196,7 @@ class triparam_model_model final : public model_base_crtp<triparam_model_model> 
       alpha_1 = stan::math::normal_rng(0.007, 0.001, base_rng__);
       double alpha_2 = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 2;
-      alpha_2 = stan::math::normal_rng(0.7, 0.05, base_rng__);
+      alpha_2 = stan::math::normal_rng(0.75, 0.05, base_rng__);
       double beta = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
       beta = stan::math::normal_rng(47500, 2000, base_rng__);
