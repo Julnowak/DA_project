@@ -20,7 +20,7 @@ model {
     alpha_2 ~ normal(0.82, 0.01);
     alpha_3 ~ normal(1280, 1);
     beta ~ normal(67500, 2000);
-    sigma ~ normal(100,50);
+    sigma ~ normal(1000,500);
     
     for(i in 1:N)
         y ~ normal(-alpha_1 * income[i] + alpha_2 * household[i] - alpha_3 * mean_age[i] + beta , sigma); //likelihood

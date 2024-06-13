@@ -12,7 +12,7 @@ static constexpr std::array<const char*, 11> locations_array__ =
 {" (found before start of program)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/prior.stan', line 7, column 4 to column 40)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/prior.stan', line 8, column 4 to column 40)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/prior.stan', line 9, column 4 to column 53)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/prior.stan', line 9, column 4 to column 52)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/prior.stan', line 11, column 4 to column 20)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/prior.stan', line 14, column 5 to column 61)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/prior.stan', line 13, column 4 to line 14, column 61)",
@@ -168,7 +168,7 @@ class prior_model final : public model_base_crtp<prior_model> {
       beta = stan::math::normal_rng(94800, 2000, base_rng__);
       double sigma = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
-      sigma = stan::math::fabs(stan::math::normal_rng(1000, 500, base_rng__));
+      sigma = stan::math::abs(stan::math::normal_rng(1000, 500, base_rng__));
       Eigen::Matrix<double, -1, 1> y_sim =
          Eigen::Matrix<double, -1, 1>::Constant(N,
            std::numeric_limits<double>::quiet_NaN());
