@@ -12,12 +12,12 @@ static constexpr std::array<const char*, 17> locations_array__ =
 {" (found before start of program)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 9, column 4 to column 44)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 10, column 4 to column 42)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 11, column 4 to column 39)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 11, column 4 to column 40)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 12, column 4 to column 40)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 13, column 4 to column 50)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 15, column 4 to column 20)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 18, column 5 to column 113)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 17, column 4 to line 18, column 113)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 18, column 5 to column 112)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 17, column 4 to line 18, column 112)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 2, column 4 to column 19)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 3, column 11 to column 12)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 3, column 4 to column 21)",
@@ -224,16 +224,16 @@ class tri_prior_model final : public model_base_crtp<tri_prior_model> {
       } 
       double alpha_1 = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 1;
-      alpha_1 = stan::math::normal_rng(0.017, 0.001, base_rng__);
+      alpha_1 = stan::math::normal_rng(0.012, 0.001, base_rng__);
       double alpha_2 = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 2;
-      alpha_2 = stan::math::normal_rng(0.82, 0.01, base_rng__);
+      alpha_2 = stan::math::normal_rng(0.81, 0.01, base_rng__);
       double alpha_3 = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
-      alpha_3 = stan::math::normal_rng(1280, 1, base_rng__);
+      alpha_3 = stan::math::normal_rng(1280, 20, base_rng__);
       double beta = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 4;
-      beta = stan::math::normal_rng(67500, 2000, base_rng__);
+      beta = stan::math::normal_rng(68500, 2000, base_rng__);
       double sigma = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 5;
       sigma = stan::math::abs(stan::math::normal_rng(100, 50, base_rng__));
@@ -245,7 +245,7 @@ class tri_prior_model final : public model_base_crtp<tri_prior_model> {
         current_statement__ = 7;
         stan::model::assign(y_sim,
           stan::math::normal_rng(
-            ((((-alpha_1 *
+            ((((alpha_1 *
                  stan::model::rvalue(income, "income",
                    stan::model::index_uni(i))) +
                 (alpha_2 *

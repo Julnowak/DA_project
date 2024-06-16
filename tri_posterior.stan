@@ -16,14 +16,14 @@ parameters {
 
 model {
     //priors
-    alpha_1 ~ normal(0.017, 0.001);
-    alpha_2 ~ normal(0.82, 0.01);
-    alpha_3 ~ normal(1280, 1);
-    beta ~ normal(67500, 2000);
-    sigma ~ normal(1000,500);
+    alpha_1 ~ normal(0.012, 0.001);
+    alpha_2 ~ normal(0.81, 0.01);
+    alpha_3 ~ normal(1280, 20);
+    beta ~ normal(68500, 2000);
+    sigma ~ normal(100,50);
     
     for(i in 1:N)
-        y ~ normal(-alpha_1 * income[i] + alpha_2 * household[i] - alpha_3 * mean_age[i] + beta , sigma); //likelihood
+        y ~ normal(alpha_1 * income[i] + alpha_2 * household[i] - alpha_3 * mean_age[i] + beta , sigma); //likelihood
 }
 
 generated quantities {
@@ -31,8 +31,8 @@ generated quantities {
     array[N] real log_lik;
 
     for(i in 1:N){
-        y_sim[i] = normal_rng(-alpha_1 * income[i] + alpha_2 * household[i] - alpha_3 * mean_age[i] + beta , sigma);
-        log_lik[i] = normal_lpdf(y[i] | -alpha_1 * income[i] + alpha_2 * household[i] - alpha_3 * mean_age[i] + beta , sigma);
+        y_sim[i] = normal_rng(alpha_1 * income[i] + alpha_2 * household[i] - alpha_3 * mean_age[i] + beta , sigma);
+        log_lik[i] = normal_lpdf(y[i] | alpha_1 * income[i] + alpha_2 * household[i] - alpha_3 * mean_age[i] + beta , sigma);
     }
 	    
 }

@@ -17,17 +17,17 @@ static constexpr std::array<const char*, 30> locations_array__ =
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 14, column 4 to column 24)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 30, column 4 to column 24)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 31, column 4 to column 26)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 34, column 8 to column 116)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 35, column 8 to column 126)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 34, column 8 to column 115)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 35, column 8 to column 125)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 33, column 17 to line 36, column 5)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 33, column 4 to line 36, column 5)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 19, column 4 to column 35)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 20, column 4 to column 33)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 21, column 4 to column 30)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 21, column 4 to column 31)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 22, column 4 to column 31)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 23, column 4 to column 29)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 26, column 8 to column 105)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 25, column 4 to line 26, column 105)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 23, column 4 to column 27)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 26, column 8 to column 104)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 25, column 4 to line 26, column 104)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 2, column 4 to column 19)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 3, column 10 to column 11)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 3, column 4 to column 25)",
@@ -179,21 +179,21 @@ class tri_posterior_model final : public model_base_crtp<tri_posterior_model> {
       {
         current_statement__ = 12;
         lp_accum__.add(
-          stan::math::normal_lpdf<propto__>(alpha_1, 0.017, 0.001));
+          stan::math::normal_lpdf<propto__>(alpha_1, 0.012, 0.001));
         current_statement__ = 13;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha_2, 0.82, 0.01));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha_2, 0.81, 0.01));
         current_statement__ = 14;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha_3, 1280, 1));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha_3, 1280, 20));
         current_statement__ = 15;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 67500, 2000));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 68500, 2000));
         current_statement__ = 16;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 1000, 500));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 100, 50));
         current_statement__ = 18;
         for (int i = 1; i <= N; ++i) {
           current_statement__ = 17;
           lp_accum__.add(
             stan::math::normal_lpdf<propto__>(y,
-              ((((-alpha_1 *
+              ((((alpha_1 *
                    stan::model::rvalue(income, "income",
                      stan::model::index_uni(i))) +
                   (alpha_2 *
@@ -274,7 +274,7 @@ class tri_posterior_model final : public model_base_crtp<tri_posterior_model> {
         current_statement__ = 8;
         stan::model::assign(y_sim,
           stan::math::normal_rng(
-            ((((-alpha_1 *
+            ((((alpha_1 *
                  stan::model::rvalue(income, "income",
                    stan::model::index_uni(i))) +
                 (alpha_2 *
@@ -288,7 +288,7 @@ class tri_posterior_model final : public model_base_crtp<tri_posterior_model> {
         stan::model::assign(log_lik,
           stan::math::normal_lpdf<false>(
             stan::model::rvalue(y, "y", stan::model::index_uni(i)),
-            ((((-alpha_1 *
+            ((((alpha_1 *
                  stan::model::rvalue(income, "income",
                    stan::model::index_uni(i))) +
                 (alpha_2 *
