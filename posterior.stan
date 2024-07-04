@@ -16,8 +16,8 @@ model {
     beta ~ normal(94800, 1500);
     sigma ~ normal(1000,500);
     
-    for(i in 1:N)
-        y ~ normal(alpha * income[i]  + beta , sigma); //likelihood
+    for(n in 1:N)
+        y[n] ~ normal(alpha * income[n]  + beta , sigma); //likelihood
 }
 
 generated quantities {

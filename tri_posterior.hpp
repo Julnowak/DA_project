@@ -26,8 +26,8 @@ static constexpr std::array<const char*, 30> locations_array__ =
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 21, column 4 to column 31)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 22, column 4 to column 31)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 23, column 4 to column 27)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 26, column 8 to column 104)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 25, column 4 to line 26, column 104)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 26, column 8 to column 107)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 25, column 4 to line 26, column 107)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 2, column 4 to column 19)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 3, column 10 to column 11)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 3, column 4 to column 25)",
@@ -189,19 +189,20 @@ class tri_posterior_model final : public model_base_crtp<tri_posterior_model> {
         current_statement__ = 16;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 100, 50));
         current_statement__ = 18;
-        for (int i = 1; i <= N; ++i) {
+        for (int n = 1; n <= N; ++n) {
           current_statement__ = 17;
           lp_accum__.add(
-            stan::math::normal_lpdf<propto__>(y,
+            stan::math::normal_lpdf<propto__>(
+              stan::model::rvalue(y, "y", stan::model::index_uni(n)),
               ((((alpha_1 *
                    stan::model::rvalue(income, "income",
-                     stan::model::index_uni(i))) +
+                     stan::model::index_uni(n))) +
                   (alpha_2 *
                     stan::model::rvalue(household, "household",
-                      stan::model::index_uni(i)))) -
+                      stan::model::index_uni(n)))) -
                  (alpha_3 *
                    stan::model::rvalue(mean_age, "mean_age",
-                     stan::model::index_uni(i)))) + beta), sigma));
+                     stan::model::index_uni(n)))) + beta), sigma));
         }
       }
     } catch (const std::exception& e) {

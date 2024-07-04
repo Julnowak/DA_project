@@ -22,8 +22,8 @@ static constexpr std::array<const char*, 22> locations_array__ =
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/posterior.stan', line 15, column 4 to column 31)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/posterior.stan', line 16, column 4 to column 31)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/posterior.stan', line 17, column 4 to column 29)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/posterior.stan', line 20, column 8 to column 54)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/posterior.stan', line 19, column 4 to line 20, column 54)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/posterior.stan', line 20, column 8 to column 57)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/posterior.stan', line 19, column 4 to line 20, column 57)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/posterior.stan', line 2, column 4 to column 19)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/posterior.stan', line 3, column 10 to column 11)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/posterior.stan', line 3, column 4 to column 25)",
@@ -146,13 +146,14 @@ class posterior_model final : public model_base_crtp<posterior_model> {
         current_statement__ = 12;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 1000, 500));
         current_statement__ = 14;
-        for (int i = 1; i <= N; ++i) {
+        for (int n = 1; n <= N; ++n) {
           current_statement__ = 13;
           lp_accum__.add(
-            stan::math::normal_lpdf<propto__>(y,
+            stan::math::normal_lpdf<propto__>(
+              stan::model::rvalue(y, "y", stan::model::index_uni(n)),
               ((alpha *
                  stan::model::rvalue(income, "income",
-                   stan::model::index_uni(i))) + beta), sigma));
+                   stan::model::index_uni(n))) + beta), sigma));
         }
       }
     } catch (const std::exception& e) {

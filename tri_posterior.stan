@@ -22,8 +22,8 @@ model {
     beta ~ normal(68500, 2000);
     sigma ~ normal(100,50);
     
-    for(i in 1:N)
-        y ~ normal(alpha_1 * income[i] + alpha_2 * household[i] - alpha_3 * mean_age[i] + beta , sigma); //likelihood
+    for(n in 1:N)
+        y[n] ~ normal(alpha_1 * income[n] + alpha_2 * household[n] - alpha_3 * mean_age[n] + beta , sigma); //likelihood
 }
 
 generated quantities {
