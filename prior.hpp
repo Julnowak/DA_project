@@ -162,10 +162,10 @@ class prior_model final : public model_base_crtp<prior_model> {
       } 
       double alpha = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 1;
-      alpha = stan::math::normal_rng(1.26, 0.04, base_rng__);
+      alpha = stan::math::normal_rng(1.26, 0.05, base_rng__);
       double beta = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 2;
-      beta = stan::math::normal_rng(94800, 2000, base_rng__);
+      beta = stan::math::normal_rng(94800, 1500, base_rng__);
       double sigma = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
       sigma = stan::math::abs(stan::math::normal_rng(1000, 500, base_rng__));

@@ -4,8 +4,8 @@ data {
 }
 
 generated quantities {
-    real alpha = normal_rng(1.26, 0.04);//intercept
-    real beta = normal_rng(94800, 2000); //slope
+    real alpha = normal_rng(1.26, 0.05);//intercept
+    real beta = normal_rng(94800, 1500); //slope
     real<lower=0> sigma = abs(normal_rng(1000,500)); //scatter
 
     vector[N] y_sim; //simulated data from posterior

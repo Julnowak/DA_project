@@ -140,9 +140,9 @@ class posterior_model final : public model_base_crtp<posterior_model> {
                 0, lp__);
       {
         current_statement__ = 10;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 1.26, 0.04));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(alpha, 1.26, 0.05));
         current_statement__ = 11;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 94800, 2000));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 94800, 1500));
         current_statement__ = 12;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 1000, 500));
         current_statement__ = 14;
