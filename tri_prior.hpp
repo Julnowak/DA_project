@@ -14,7 +14,7 @@ static constexpr std::array<const char*, 17> locations_array__ =
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 10, column 4 to column 42)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 11, column 4 to column 40)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 12, column 4 to column 40)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 13, column 4 to column 50)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 13, column 4 to column 52)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 15, column 4 to column 20)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 18, column 5 to column 112)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_prior.stan', line 17, column 4 to line 18, column 112)",
@@ -236,7 +236,7 @@ class tri_prior_model final : public model_base_crtp<tri_prior_model> {
       beta = stan::math::normal_rng(68500, 2000, base_rng__);
       double sigma = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 5;
-      sigma = stan::math::abs(stan::math::normal_rng(100, 50, base_rng__));
+      sigma = stan::math::abs(stan::math::normal_rng(1000, 200, base_rng__));
       Eigen::Matrix<double, -1, 1> y_sim =
          Eigen::Matrix<double, -1, 1>::Constant(N,
            std::numeric_limits<double>::quiet_NaN());

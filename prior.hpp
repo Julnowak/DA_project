@@ -168,7 +168,7 @@ class prior_model final : public model_base_crtp<prior_model> {
       beta = stan::math::normal_rng(94800, 1500, base_rng__);
       double sigma = std::numeric_limits<double>::quiet_NaN();
       current_statement__ = 3;
-      sigma = stan::math::abs(stan::math::normal_rng(1000, 500, base_rng__));
+      sigma = stan::math::abs(stan::math::normal_rng(1000, 200, base_rng__));
       Eigen::Matrix<double, -1, 1> y_sim =
          Eigen::Matrix<double, -1, 1>::Constant(N,
            std::numeric_limits<double>::quiet_NaN());

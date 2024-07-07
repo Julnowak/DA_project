@@ -10,7 +10,7 @@ generated quantities {
     real alpha_2 = normal_rng(0.81, 0.01);  //slope 2
     real alpha_3 = normal_rng(1280, 20);  //slope 3
     real beta = normal_rng(68500, 2000);  //intercept
-    real<lower=0> sigma = abs(normal_rng(100,50)); //scatter
+    real<lower=0> sigma = abs(normal_rng(1000,200)); //scatter
 
     vector[N] y_sim; //simulated data from posterior
     
