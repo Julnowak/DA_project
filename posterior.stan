@@ -1,13 +1,13 @@
 data {
     int<lower=0> N; //number of data
-    array[N] real income; //covariates
-    array[N] real y; //variates
+    array[N] real income;
+    array[N] real y;
 }
 
 parameters {
     real alpha;//intercept
     real beta; //slope
-    real<lower=0> sigma; //scatter
+    real<lower=0> sigma;
 }
 
 model {
