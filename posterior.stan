@@ -14,7 +14,7 @@ model {
     //priors
     alpha ~ normal(1.26, 0.05);
     beta ~ normal(94800, 1500);
-    sigma ~ normal(1000,200);
+    sigma ~ normal(1300,200);
     
     for(n in 1:N)
         y[n] ~ normal(alpha * income[n]  + beta , sigma); //likelihood

@@ -25,7 +25,7 @@ static constexpr std::array<const char*, 30> locations_array__ =
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 20, column 4 to column 33)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 21, column 4 to column 31)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 22, column 4 to column 31)",
- " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 23, column 4 to column 29)",
+ " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 23, column 4 to column 28)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 26, column 8 to column 107)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 25, column 4 to line 26, column 107)",
  " (in 'C:/Users/Julia/Desktop/DATAAN~1/Project/DA_PRO~1/tri_posterior.stan', line 2, column 4 to column 19)",
@@ -187,7 +187,7 @@ class tri_posterior_model final : public model_base_crtp<tri_posterior_model> {
         current_statement__ = 15;
         lp_accum__.add(stan::math::normal_lpdf<propto__>(beta, 68500, 2000));
         current_statement__ = 16;
-        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 1000, 200));
+        lp_accum__.add(stan::math::normal_lpdf<propto__>(sigma, 700, 200));
         current_statement__ = 18;
         for (int n = 1; n <= N; ++n) {
           current_statement__ = 17;
